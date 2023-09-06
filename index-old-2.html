@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Michael J. Curry Academic Web Page</title>
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+<div>
+<p style="float:right"><img src="004_mcurry_crop_compressed.jpg" width=200 height=200 alt="Photo of Michael Curry"></p>
+<p>My name is Michael Jeremiah Curry. I am a third-year Ph.D. student at the
+University of Maryland, College Park in the Computer Science department, advised by <a href="http://jpdickerson.com/">John Dickerson</a> and <a href="https://www.cs.umd.edu/~tomg/">Tom Goldstein</a> and affiliated with the Center for Machine Learning.
+Previously I attended Columbia University, where I received an MS in computer
+science, and Amherst College, where I received a BA in computer science.</p>
+</div>
+
+<p>My office is room 4120 in the Brendan Iribe Center.
+
+You can reach me at:
+
+curry at cs dot umd dot edu</p>
+
+A list of my publications is <a href="publist.html">here</a>.
+
+<h1>Research interests</h1>
+
+Below is a summary of some recent projects and research interests.
+
+<h2>Machine learning for matching and allocation</h2>
+<div>
+<p style="float: right;"><img src="kidneygraph.png" alt="a representation of a kidney exchange graph, demonstrating compatibilities between patient-donor pairs of blood types AB/O, O/AB, AB/A, and A/O"></p>
+
+<p>I have worked on applying machine learning to problems in matching and allocation. A particular application is to the kidney exchange problem, in which transplant patients and their willing but biologically-incompatible donors exchange kidneys, sometimes in cycles or long chains.</p>
+
+<p>Although the problem is NP-hard there are reductions to integer programming allowing efficient solutions in practice. Kidney exchange networks have been very successful around the world, but there are still open research problems whose solutions could dramatically improve quality-of-life for the many patients still waiting for transplants.</p>
+</div>
+<h3>Differentiable optimization for matching problems</h3>
+
+<p>In many settings for matching problems, including kidney exchange, the compatibility of elements might not be known exactly but can be predicted from features of the elements. (For example, transplant donors and patients might be found biologically incompatible for reasons not known beforehand.) In this situation, one reasonable approach is to simply learn to predict compatibility in a supervised manner, and then feed the predictions into the IP solver that will output a final matching.</p>
+
+<p> However, the actual goal in this problem is not accurate prediction, it is producing high-value matches, and there is reason to believe that <a href="https://arxiv.org/abs/1809.05504">
+	optimizing a model to directly achieve the true objective</a>, rather than low prediction error, can improve performance. 
+Doing so requires leveraging <a href="https://arxiv.org/abs/1907.05912">recent work</a> allowing differentiation through integer program solutions.</p>
+
+
+<h3>Reinforcement learning for dynamic set packing</h3>
+
+<p>I have also worked on a project applying reinforcement learning to dynamic set packing (with applications to kidney exchange), which was presented in preliminary form at <a href="rldm.org">RLDM</a> this summer under the title "Reinforcement learning for dynamic set packing" (Curry, McElfresh, You, Moy, Huang, Goldstein, Dickerson).</p>
+
+<p>In brief, there is reason to believe that in the dynamic setting, when elements arrive and depart over time, simply greedily matching all available elements immediately may not be optimal. We formulate the environment as an MDP, where at each time step the agent chooses whether or not to perform a greedy matching using a standard LP solver, and use standard reinforcement learning techniques to learn a good policy. The approach works in toy settings but performs poorly in a more realistic simulation.</p>
+
+<p>We hope that applying differentiable optimization in this setting might let us avoid the need for unpleasantly noisy REINFORCE estimators of the policy gradient. Preliminary work is ongoing to see if these can improve performance.</p>
+
+<h2>Game theory</h2>
+
+<h3>Inverse correlated equilibria</h3>
+
+<p>I am in the early stages of a project relating involving the <a href="https://arxiv.org/abs/1308.3506">maximum entropy inverse correlated equilibrium</a> approach to imitation learning in (one-shot) games, with applications in transportation and routing under emergency conditions.</p>
+
+<p>Given a small amount of observed play (perhaps orders of magnitude fewer observations than the number of parameters) under some unknown strategy, with unknown utilities for the players, that forms a correlated equilibrium, it is possible to recover a good approximation of the true strategy. In a correlated equilibrium, players must have low internal regret, so one can simply solve a maximum entropy optimization problem, subject to a set of constraints ensuring that no player's regret can be any larger than in the observed play.</p>
+
+<h3>SI3-CMD DARPA grant</h3>
+<div>
+<p style="float: right;"><img src="redblue.png", alt="a stylized representation of a two-player influence spreading game on a graph" width=250 height=160></p>
+<p>I have been funded by a DARPA grant (&quot;Serial Interactions in Imperfect Information Games for Complex Military Decision-Making (SI3-CMD)&quot;, joint with Fotini Christia, Costis Daskalakis, Erik Demaine, John Dickerson, MohammadTaghi Hajiaghayi) related to game theory. In brief, the goal is to formulate a multiplayer version of the <a href="https://theoryofcomputing.org/articles/v011a004/">classic KKT social network influence-maximization problem</a>. Investigation is ongoing into the computation of correlated equilibria by no-regret learning. My contributions have been to the applied side of the grant, dealing with the applications of the techniques to real-world graphs.</p>
+</div>
+
+<h2>Other research interests</h2>
+
+<h3>Wasserstein trust regions for reinforcement learning</h3>
+
+<p>
+A class of trust-region methods for reinforcement learning, including <a href="https://arxiv.org/abs/1707.06347">PPO</a> and <a href="https://arxiv.org/abs/1502.05477">TRPO</a>, have been very successful in practice. The trust region approaches take advantage of the fact that as long as the two policies are &quot;close enough&quot;, it is possible to ensure that the bias of a low-variance gradient estimator will remain small. &quot;Closeness&quot; is defined in terms of the total variation distance of the policies (considered as conditional distributions over actions). With an accurate estimate and the right step size, policies are guaranteed to improve monotonically at each step (at least in expectation). </p>
+
+<p>
+Total variation distance is in fact a special case of optimal transport distances, where the ground cost is just the least informative possible metric (cost zero for identical elements, one otherwise). In cases where we do have more information about structure and similarity of actions, using a more informative metric might be better. For instance, in many continuous control problems, actions are vectors in a Euclidean space; then using the standard notion of distance as a cost corresponds to the famous Wasserstein distance. Under some reasonable assumptions about the transition functions of the MDP (essentially that transition probabilities vary smoothly as actions change), it is possible to show that equivalent bounds hold and monotonic convergence is still guaranteed.
+</p>
+
+<p>
+This idea has occurred independently to several other research groups, with slightly different goals and assumptions. Unfortunately, some of them have come up with working approaches before me. I am still trying to think of a novel angle to work on.
+</p>
+
+<h3>Previous work at NIH</h3>
+
+I have also worked at the National Institutes of Health, in the Section on Quantitative Imaging and Tissue Sciences, on projects related to making predictions from the fusion of multimodal structural and functional imaging data.
+
+<h3>Rideshare dispatch</h3>
+
+I made some contributions to &quot;Mix and Match: Markov Chains and Mixing Times in Matching for Rideshare&quot;. The main thrust of the paper is an analysis of convergence rates to a stationary distribution of cars of some simple dispatch policies for a model of rideshare. The idea is that in the steady state, the dispatcher wants to ensure that cars are well-distributed to pick up prospective passengers. I was part of the work to add some RL-based baselines which somewhat outperform the proposed policies although with much worse convergence and hugely higher computational cost.
+
+<p>
+<img src="CaCapeCanaveralGalaxy8999construction5.gif" alt="animated 90s-style under-construction sign"><img src="CaCapeCanaveralGalaxy7191underconstruction4.gif" alt="this page is under construction animated banner"><img src="CaCapeCanaveralGalaxy8999construction5.gif" alt="animated 90s-style under-construction sign">
+</p>
+</body>
+</html> 

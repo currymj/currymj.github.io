@@ -1,1 +1,135 @@
-Hello World
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Michael J. Curry Academic Web Page</title>
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style type="text/css">
+    body {
+        margin: 40px
+        auto;
+        max-width: 800px;
+        line-height: 1.2;
+        font-size: 18px;
+        color: #000;
+        padding: 0
+        10px
+    }
+
+    h1, h2, h3 {
+        line-height: 1.2
+    }
+    </style>
+
+
+</head>
+
+<body>
+<div>
+<p style="float:right;padding:20px"><img src="004_mcurry_crop_compressed.jpg" width=200 height=200 alt="Photo of Michael Curry"></p>
+<p>My name is Michael Jeremiah Curry. I received my Ph.D. from the
+University of Maryland, College Park in the Computer Science department, advised by <a href="http://jpdickerson.com/">John Dickerson</a> and <a href="https://www.cs.umd.edu/~tomg/">Tom Goldstein</a> and affiliated with the Center for Machine Learning.
+Previously I attended Columbia University, where I received an MS in computer
+science, and Amherst College, where I received a BA in computer science.</p>
+<p>I have accepted a postdoc offer in Sven Seuken's <a href="https://www.ifi.uzh.ch/en/ce.html">Computation and Economics Research Group</a> at the University of Z&#252;rich starting this fall.</p>
+</div>
+
+<p>My office is room 4120 in the Brendan Iribe Center.
+
+You can reach me at:
+
+curry at cs dot umd dot edu</p>
+
+A list of my publications is <a href="publist.html">here</a>. My CV is <a href="mcurry_cv_08_2022.pdf">here</a>.
+
+<p>Blog posts/notes:
+<ul>
+<!--<li><a href="https://currymj.potion.so/notes-truthful-mechanism-design-and-convex-functions">Notes: Truthful Mechanism Design and Convex Functions</a></li>
+--!>
+<li><a href="https://iclr-blog-track.github.io/2022/03/25/two-player-auction-learning/">Auction Learning as a Two Player Game: GANS (?) for Mechanism Design (ICLR 2022 Blog Post Track)</a></li>
+<li><a href="https://currymj.potion.so/ppo-and-trpo">PPO and TRPO</a></li>
+</ul>
+</p>
+
+<h1>Research interests</h1>
+
+Below is a summary of some recent projects and research interests.
+
+<!--<h2>This summer: Machine learning for Quantum Monte Carlo</h2>
+<div>
+<p style="float:right"><img src="qmc.svg" width=200 alt="grad_alpha of <psi|H|psi>">
+
+<p>For the summer, I am participating in the G-RIPS program at the Institute for Pure and Applied Mathematics at UCLA. The research topic is the use of machine learning to improve the convergence of Quantum Monte Carlo; learning about quantum physics, a subject in which I have absolutely no background, has been exciting.</p>
+
+<p>In brief, the idea of Quantum Monte Carlo is to use some parametric function approximator to represent the wavefunction, the quantum state; these parameters are varied to minimize the energy of the system.</p>
+
+<p>The challenge is in estimating the energy. The squared magnitude of the wavefunction encodes a probability density; the energy of the system is an expectation over this distribution. As with any expectation, computing it given only the density requires computing an intractable high-dimensional integral to determine the normalizing factor.</p>
+
+<p>To overcome this challenge, physicists use Markov-chain Monte Carlo algorithms to approximately sample from the distribution defined by the wavefunction. (The exact same techniques are used for Bayesian inference, for the same reasons.) 
+There are many MCMC techniques in the machine learning literature that are cheaper, faster, or more adaptive than the classic approaches; we are investigating the use of these techniques in the Quantum Monte Carlo context.
+</p>!-->
+
+<h2>Differentiable economics</h2>
+<p>A truthful, incentive compatible, or strategyproof economic mechanism is one where participants have no incentive to lie or otherwise behave strategically. (The classic truthful mechanism is a second-price auction, where the highest bid wins and pays the second-highest bid.) A grand challenge in mechanism design has been to design truthful auction mechanisms that maximize revenue. Myerson solved the problem for sales of a single item in 1981, and there has been very limited progress since then -- some results are known for selling multiple items to a single bidder, but even for selling two items to two agents, nothing is known beyond very simple special cases.</p>
+
+<p>Recently, Duetting et al. published <a href="https://arxiv.org/abs/1706.03459">Optimal Auctions Through Deep Learning</a>, which attempts to use the tools of deep learning to learn strategyproof mechanisms. The idea is to define a mechanism which is differentiable, and maximize revenue via gradient ascent. In limited settings, they can define architectures which will always be strategyproof; in more general settings, they define an architecture called RegretNet which can represent any auction, and incentivize strategyproofness by adding a term in the loss function.</p>
+
+<h3> Affine maximizer auctions</h3>
+
+The ideal auction architecture for differentiable economics would be perfectly strategyproof, support multiple bidders and items, and be rich enough to represent any mechanism. Creating such an architecture remains difficult. There are single-bidder approaches (MenuNet, RochetNet) which are always strategyproof and can represent optimal mechanisms. RegretNet is multi-bidder and can approximate any mechanism, but is only approximately strategyproof.
+
+Our paper <a href="https://arxiv.org/abs/2202.02872">Differentiable Economics for Randomized Affine Maximizer Auctions</a> presents an architecture that supports multiple bidders and is perfectly strategyproof, but cannot necessarily represent the optimal mechanism. This architecture is the classic affine maximizer auction (AMA) -- a reweighted form of the famous VCG mechanism -- now modified to offer lotteries. We are able to learn affine maximizer auctions that give good performance including in relatively large settings.
+
+
+<h3>Certifiably strategyproof auction networks</h3>
+
+<p>The RegretNet architecture may underestimate the degree to which strategyproofness is violated, as it uses a gradient-based approximation. Our NeurIPS 2020 paper <a href="https://arxiv.org/abs/2006.08742">Certifying Strategyproof Auction Networks</a> adapts techniques from the adversarial robustness literature to exactly compute this quantity for a trained network. The idea is to embed the network itself in an integer program and directly solve a maximization problem for each player's utility.</p>
+
+<!--<h3>Learning fair auctions</h3>
+
+<p>In the particular case of online ad auctions, it is desirable for the allocations to satisfy notions of demographic fairness. For example, if job ads are being shown, an advertiser's ads should somehow not be shown to people of different genders in a way that is unfair. Extending differentiable economics work to deal with this problem, our NeurIPS 2021 paper presents <a href="https://arxiv.org/abs/2106.03215">PreferenceNet</a>, which allows the incorporation of possibly vague, ill-defined human preferences (even learned from survey data) into an auction learning objective.</p>-->
+
+<h2>Machine learning for matching and allocation</h2>
+<div>
+<p style="float: right;"><img src="kidneygraph.png" alt="a representation of a kidney exchange graph, demonstrating compatibilities between patient-donor pairs of blood types AB/O, O/AB, AB/A, and A/O"></p>
+
+<p>I have worked on applying machine learning to problems in matching and allocation. A particular application is to the kidney exchange problem, in which transplant patients and their willing but biologically-incompatible donors exchange kidneys, sometimes in cycles or long chains.</p>
+
+<p>Although the problem is NP-hard there are reductions to integer programming allowing efficient solutions in practice. Kidney exchange networks have been very successful around the world, but there are still open research problems whose solutions could dramatically improve quality-of-life for the many patients still waiting for transplants.</p>
+</div>
+
+<p>One particular problem in kidney exchange is that patients and doctors are free to reject offered transplants, and often do, which can have cascading effects on other transplants. To avoid this, doctors are asked to pre-screen unacceptable transplants before matching takes place, but they only have time to screen a limited number. Our NeurIPS 2020 paper <a href="https://arxiv.org/abs/2010.12069">Improving Policy-Constrained Kidney Exchange via Pre-Screening</a> formalizes and investigates the problem of finding the highest-leverage potential transplants to submit for pre-screening.</p>
+
+<h2>Adversarial machine learning</h2>
+
+I have also participated in work on adversarial machine learning, including work on <a href="https://arxiv.org/abs/2007.03730">randomized smoothing for certifiably robust object detectors</a>, and work on adversarial attacks on transfer learning systems.
+
+<h2>Reinforcement learning</h2>
+
+<p>In summer 2021, I was fortunate to intern at Salesforce Research, where I participated in a project on the use of multi-agent reinforcement learning to approximate economic equilibria in complex, heterogeneous simulation environments with multiple hierarchical levels of interacting agents.</p>
+
+<h2>Previous projects</h2>
+
+<h3>Deep learning for Quantum Monte Carlo</h3>
+
+<p>In the summer of 2020, I participated in the G-RIPS program at the Institute for Pure and Applied Mathematics at UCLA. Our team was sponsored by AMD and focused on investigating the use of neural networks as approximate wavefunctions for many-electron quantum systems.</p>
+
+<h3>SI3-CMD DARPA grant</h3>
+<div>
+<p>I was funded by a DARPA grant related to game theory. The focus of the project is a multiplayer version of classic influence maximization problems on social networks -- how should an advertiser spread their budget across the network, when dealing with multiple strategizing opponents trying to do the same thing?</p> 
+
+<p>It is possible to model this problem in a particularly nice way, resulting in a game which is socially concave. In socially concave games, when players individually update their strategies in a no-regret manner, they jointly reach a pure Nash equilibrium. My contributions have been to the applied side of the grant, dealing with the applications of the techniques to real-world graphs and concrete implementations of the no-regret algorithms using the mirror descent framework. This work resulted in the paper <a href="https://ojs.aaai.org/index.php/AAAI/article/view/16666">Scalable Equilibrium Computation for Multi-agent Influence Games on Networks</a> at AAAI 2021.</p>
+</div>
+
+<h3>Previous work at NIH</h3>
+
+<p>I have also worked at the National Institutes of Health, in the Section on Quantitative Imaging and Tissue Sciences, on projects related to making predictions from the fusion of multimodal structural and functional imaging data.</p>
+
+<h3>Rideshare dispatch</h3>
+
+<p>I made some contributions to &quot;Mix and Match: Markov Chains and Mixing Times in Matching for Rideshare&quot;. The main thrust of the paper is an analysis of convergence rates to a stationary distribution of cars of some simple dispatch policies for a model of rideshare. The idea is that in the steady state, the dispatcher wants to ensure that cars are well-distributed to pick up prospective passengers. I was part of the work to add some RL-based baselines which somewhat outperform the proposed policies although with much worse convergence and hugely higher computational cost.</p>
+
+<p>
+<img src="CaCapeCanaveralGalaxy8999construction5.gif" alt="animated 90s-style under-construction sign"><img src="CaCapeCanaveralGalaxy7191underconstruction4.gif" alt="this page is under construction animated banner"><img src="CaCapeCanaveralGalaxy8999construction5.gif" alt="animated 90s-style under-construction sign">
+</p>
+</body>
+</html> 

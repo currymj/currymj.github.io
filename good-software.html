@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Good Software</title>
+</head>
+<body>
+<p>This is a list of pieces of software that I have found exceptionally good or helpful.</p>
+
+<header>
+<h3><a
+href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a></h3>
+<p>
+This is without a doubt the best available piece of software for solving
+differential equations. It is a package for the Julia programming language, and
+has pure-Julia implementations of almost any solver you could want, along with
+interfaces to widely-used C and FORTRAN libraries. As Julia compiles to
+well-optimized machine code, the Julia implementations are usually competitive
+and sometimes the fastest available. </p>
+
+<p>The interface is very straightforward and natural to use, and there are efficient solvers available for ODEs, stochastic ODEs, delay differential equations, and lots of weirder types of problems. (No PDE support yet.)</p>
+
+<p>There's also really neat support for Bayesian parameter estimation: somehow,
+it's possible to take the existing solvers and incorporate them into the
+log-probability function of various probabilistic programming systems. Through
+the magic of Julia, this whole thing can be automatically differentiated in
+order to use Hamiltonian Monte Carlo, using the same code that works for
+ordinary floating-point numbers. I should really learn how this actually works!
+</p>
+
+<p>
+Another cool example of the uses of this library is <a href="https://github.com/JuliaDiffEq/DiffEqFlux.jl">DiffEqFlux.jl</a>. This is an implementation of <a href="https://arxiv.org/abs/1806.07366">neural ODEs</a>. It is actually only about 100 lines of code. This is because DifferentialEquations already exists, and a deep learning/autograd framework called Flux already exists. Since both are written in Julia, combining them "just works", and you can backprop through the operations of many of the complicated solvers provided by DifferentialEquations.
+</p>
+
+<h3><a href="https://github.com/Z3Prover/z3">Z3 Theorem Prover</a> </h3>
+        <p> A free software SMT solver, where SMT stands for
+            "Satisfiability Modulo Theory". Per wikipedia, "the satisfiability
+            modulo theories (SMT) problem is a decision problem for logical formulas
+            with respect to combinations of background theories expressed in classical
+            first-order logic with equality." This makes it sound like a really abstruse
+            theoretical tool, that will only ever be used by like 500 people all of whom
+            are smarter than you.
+        </p>
+
+        <p>
+            In fact it is a very easy-to-use tool for solving practical problems that is
+            extremely powerful, even if you have no idea how it works. It was created at
+            Microsoft Research and has been used for years for problems related to software
+            testing and verification; in 2012 they opened the source for noncommercial use,
+            and in 2015 they relicensed it under the MIT license.
+        </p>
+
+        <p>
+            In my head SMT basically means "SAT for more complicated stuff" &#x2013; a tool like
+            Z3 lets you express constraints on boolean, integer, real-valued, and even more
+            complex types of variables, and then tells you whether or not a satisfying
+            assignment exists, and what it is. It can also do some optimization &#x2013; maximizing objective
+            functions, subject to constraints, or trying to satisfy as many soft constraints
+            as possible. Of course all of this is NP-complete or worse, but in practice
+            there are all kinds of good heuristics that work really well.
+        </p>
+
+        <p>
+            To see how Z3 and similar tools can be useful, check out <a href="https://yurichev.com/writings/SAT_SMT_by_example.pdf">SAT/SMT By Example</a>. It
+            takes a very ecumenical approach to solving these problems. One can express all
+            kinds of scheduling and constrained optimization problems as sets of SMT
+            constraints fairly easily; and then Z3 will (hopefully) just solve them,
+            really fast.
+        </p>
+
+ </header>
+
+</body>
+
+</html> 
