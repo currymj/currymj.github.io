@@ -30,25 +30,12 @@
 University of Maryland, College Park in the Computer Science department, advised by <a href="http://jpdickerson.com/">John Dickerson</a> and <a href="https://www.cs.umd.edu/~tomg/">Tom Goldstein</a> and affiliated with the Center for Machine Learning.
 Previously I attended Columbia University, where I received an MS in computer
 science, and Amherst College, where I received a BA in computer science.</p>
-<p>I have accepted a postdoc offer in Sven Seuken's <a href="https://www.ifi.uzh.ch/en/ce.html">Computation and Economics Research Group</a> at the University of Z&#252;rich starting this fall.</p>
+<p>I am currently a postdoc, splitting time between Sven Seuken's  <a href="https://www.ifi.uzh.ch/en/ce.html">Computation and Economics Research Group</a> at the University of Z&#252;rich, and David Parkes' <a href="https://parkes.seas.harvard.edu/">group</a> at Harvard SEAS</p>
 </div>
 
-<p>My office is room 4120 in the Brendan Iribe Center.
-
-You can reach me at:
-
-curry at cs dot umd dot edu</p>
 
 A list of my publications is <a href="publist.html">here</a>. My CV is <a href="mcurry_cv_08_2022.pdf">here</a>.
 
-<p>Blog posts/notes:
-<ul>
-<!--<li><a href="https://currymj.potion.so/notes-truthful-mechanism-design-and-convex-functions">Notes: Truthful Mechanism Design and Convex Functions</a></li>
---!>
-<li><a href="https://iclr-blog-track.github.io/2022/03/25/two-player-auction-learning/">Auction Learning as a Two Player Game: GANS (?) for Mechanism Design (ICLR 2022 Blog Post Track)</a></li>
-<li><a href="https://currymj.potion.so/ppo-and-trpo">PPO and TRPO</a></li>
-</ul>
-</p>
 
 <h1>Research interests</h1>
 
@@ -71,7 +58,7 @@ There are many MCMC techniques in the machine learning literature that are cheap
 <h2>Differentiable economics</h2>
 <p>A truthful, incentive compatible, or strategyproof economic mechanism is one where participants have no incentive to lie or otherwise behave strategically. (The classic truthful mechanism is a second-price auction, where the highest bid wins and pays the second-highest bid.) A grand challenge in mechanism design has been to design truthful auction mechanisms that maximize revenue. Myerson solved the problem for sales of a single item in 1981, and there has been very limited progress since then -- some results are known for selling multiple items to a single bidder, but even for selling two items to two agents, nothing is known beyond very simple special cases.</p>
 
-<p>Recently, Duetting et al. published <a href="https://arxiv.org/abs/1706.03459">Optimal Auctions Through Deep Learning</a>, which attempts to use the tools of deep learning to learn strategyproof mechanisms. The idea is to define a mechanism which is differentiable, and maximize revenue via gradient ascent. In limited settings, they can define architectures which will always be strategyproof; in more general settings, they define an architecture called RegretNet which can represent any auction, and incentivize strategyproofness by adding a term in the loss function.</p>
+<p>Duetting et al. published <a href="https://arxiv.org/abs/1706.03459">Optimal Auctions Through Deep Learning</a>, which attempts to use the tools of deep learning to learn strategyproof mechanisms. The idea is to define a mechanism which is differentiable, and maximize revenue via gradient ascent. In limited settings, they can define architectures which will always be strategyproof; in more general settings, they define an architecture called RegretNet which can represent any auction, and incentivize strategyproofness by adding a term in the loss function.</p>
 
 <h3> Affine maximizer auctions</h3>
 
@@ -128,8 +115,19 @@ I have also participated in work on adversarial machine learning, including work
 
 <p>I made some contributions to &quot;Mix and Match: Markov Chains and Mixing Times in Matching for Rideshare&quot;. The main thrust of the paper is an analysis of convergence rates to a stationary distribution of cars of some simple dispatch policies for a model of rideshare. The idea is that in the steady state, the dispatcher wants to ensure that cars are well-distributed to pick up prospective passengers. I was part of the work to add some RL-based baselines which somewhat outperform the proposed policies although with much worse convergence and hugely higher computational cost.</p>
 
+
+<p>Blog posts/notes:
+    <ul>
+    <!--<li><a href="https://currymj.potion.so/notes-truthful-mechanism-design-and-convex-functions">Notes: Truthful Mechanism Design and Convex Functions</a></li>
+    --!>
+    <li><a href="https://iclr-blog-track.github.io/2022/03/25/two-player-auction-learning/">Auction Learning as a Two Player Game: GANS (?) for Mechanism Design (ICLR 2022 Blog Post Track)</a></li>
+    <li><a href="https://currymj.potion.so/ppo-and-trpo">PPO and TRPO</a></li>
+    </ul>
+    </p>
+
 <p>
 <img src="CaCapeCanaveralGalaxy8999construction5.gif" alt="animated 90s-style under-construction sign"><img src="CaCapeCanaveralGalaxy7191underconstruction4.gif" alt="this page is under construction animated banner"><img src="CaCapeCanaveralGalaxy8999construction5.gif" alt="animated 90s-style under-construction sign">
 </p>
 </body>
+
 </html> 
