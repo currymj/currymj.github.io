@@ -60,12 +60,17 @@ There are many MCMC techniques in the machine learning literature that are cheap
 
 <p>Duetting et al. published <a href="https://arxiv.org/abs/1706.03459">Optimal Auctions Through Deep Learning</a>, which attempts to use the tools of deep learning to learn strategyproof mechanisms. The idea is to define a mechanism which is differentiable, and maximize revenue via gradient ascent. In limited settings, they can define architectures which will always be strategyproof; in more general settings, they define an architecture called RegretNet which can represent any auction, and incentivize strategyproofness by adding a term in the loss function.</p>
 
-<h3> Affine maximizer auctions</h3>
+<h3>Affine maximizer auctions</h3>
 
 The ideal auction architecture for differentiable economics would be perfectly strategyproof, support multiple bidders and items, and be rich enough to represent any mechanism. Creating such an architecture remains difficult. There are single-bidder approaches (MenuNet, RochetNet) which are always strategyproof and can represent optimal mechanisms. RegretNet is multi-bidder and can approximate any mechanism, but is only approximately strategyproof.
 
 Our paper <a href="https://arxiv.org/abs/2202.02872">Differentiable Economics for Randomized Affine Maximizer Auctions</a> presents an architecture that supports multiple bidders and is perfectly strategyproof, but cannot necessarily represent the optimal mechanism. This architecture is the classic affine maximizer auction (AMA) -- a reweighted form of the famous VCG mechanism -- now modified to offer lotteries. We are able to learn affine maximizer auctions that give good performance including in relatively large settings.
 
+<h3>Dynamic mechanism design</h3>
+
+In our recent paper at AAAI '24, "Automated Design of Affine Maximizer Mechanisms in Dynamic Settings", we extend the use of affine maximizers to dynamic mechanisms, where the mechanism must make a sequence of decisions over time on an MDP, and agents have different preferences over MDP outcomes.
+Dynamic variants of the VCG mechanism have been very thoroughly studied. Our focus is again on mechanism design for goals other than welfare, where theoretical progress has been relatively limited.
+In this setting, we face a challenging bilevel optimization problem, where the lower level involves finding reward-maximizing solutions in the MDP, and the upper level involves choosing affine maximizer parameters. We establish differentiability almost everywhere for the outer problem and show how to use gradient-based methods to find high-performing mechanisms in several dynamic mechanism design settings.
 
 <h3>Certifiably strategyproof auction networks</h3>
 
@@ -111,9 +116,9 @@ I have also participated in work on adversarial machine learning, including work
 
 <p>I have also worked at the National Institutes of Health, in the Section on Quantitative Imaging and Tissue Sciences, on projects related to making predictions from the fusion of multimodal structural and functional imaging data.</p>
 
-<h3>Rideshare dispatch</h3>
+<!--<h3>Rideshare dispatch</h3>
 
-<p>I made some contributions to &quot;Mix and Match: Markov Chains and Mixing Times in Matching for Rideshare&quot;. The main thrust of the paper is an analysis of convergence rates to a stationary distribution of cars of some simple dispatch policies for a model of rideshare. The idea is that in the steady state, the dispatcher wants to ensure that cars are well-distributed to pick up prospective passengers. I was part of the work to add some RL-based baselines which somewhat outperform the proposed policies although with much worse convergence and hugely higher computational cost.</p>
+<p>I made some contributions to &quot;Mix and Match: Markov Chains and Mixing Times in Matching for Rideshare&quot;. The main thrust of the paper is an analysis of convergence rates to a stationary distribution of cars of some simple dispatch policies for a model of rideshare. The idea is that in the steady state, the dispatcher wants to ensure that cars are well-distributed to pick up prospective passengers. I was part of the work to add some RL-based baselines which somewhat outperform the proposed policies although with much worse convergence and hugely higher computational cost.</p>-->
 
 
 <p>Blog posts/notes:
